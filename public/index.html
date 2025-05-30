@@ -33,6 +33,7 @@
                 <div class="nav-links">
                     <button onclick="showDashboard()" class="nav-btn active" id="dashboard-btn">Dashboard</button>
                     <button onclick="showProgress()" class="nav-btn" id="progress-btn">Progress</button>
+                    <button onclick="showGraphs()" class="nav-btn" id="graphs-btn">Graphs</button>
                     <button onclick="logout()" class="nav-btn">Logout</button>
                 </div>
             </nav>
@@ -46,13 +47,43 @@
             </div>
 
             <div id="progress-page" class="page hidden">
-                <h2>Progress Overview</h2>
+                <h2 style="color: white; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); margin-bottom: 2rem;">Progress Overview</h2>
                 <div id="habit-selector">
                     <select id="habit-filter" onchange="updateProgressView()">
                         <option value="all">All Habits</option>
                     </select>
                 </div>
                 <div id="progress-grid"></div>
+            </div>
+
+            <div id="graphs-page" class="page hidden">
+                <h2 style="color: white; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); margin-bottom: 2rem;">Analytics & Insights</h2>
+                
+                <div class="graph-container">
+                    <div class="graph-header">
+                        <h3>Completion Rate</h3>
+                        <div class="time-selector">
+                            <button class="time-btn active" onclick="setTimeRange('7d')" id="btn-7d">7 Days</button>
+                            <button class="time-btn" onclick="setTimeRange('30d')" id="btn-30d">30 Days</button>
+                            <button class="time-btn" onclick="setTimeRange('90d')" id="btn-90d">90 Days</button>
+                        </div>
+                    </div>
+                    <canvas id="completion-chart" width="400" height="200"></canvas>
+                </div>
+
+                <div class="graph-container">
+                    <div class="graph-header">
+                        <h3>Weekly Progress</h3>
+                    </div>
+                    <canvas id="weekly-chart" width="400" height="200"></canvas>
+                </div>
+
+                <div class="graph-container">
+                    <div class="graph-header">
+                        <h3>Habit Performance</h3>
+                    </div>
+                    <canvas id="habit-performance-chart" width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
 
